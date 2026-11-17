@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammad Yawar – WordPress, Local SEO, AI Websites & Branding</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:#000;color:#fff;font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800}
+.grad{background:linear-gradient(90deg,#FF6B35 0%,#E8294A 50%,#CC1F5A 100%)}
+.gtext{background:linear-gradient(90deg,#FF6B35,#E8294A,#CC1F5A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:#141414;border:1px solid rgba(255,255,255,.07);border-radius:20px;transition:border-color .3s,box-shadow .3s,transform .15s}
+.card:hover{border-color:rgba(255,107,53,.55);box-shadow:0 0 32px rgba(255,107,53,.14)}
+.shimmer{height:1px;background:linear-gradient(90deg,transparent,#FF6B35,#E8294A,#CC1F5A,transparent);background-size:200% 100%;animation:sh 3s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.marq{display:flex;width:max-content;animation:mq 32s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+.float{animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+@media(hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+@media(prefers-reduced-motion:reduce){.marq,.float,.shimmer{animation:none}.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #FF6B35;outline-offset:3px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const NAME="Muhammad Yawar";
+const WORK=[["WordPress Website Design","Custom themes, fast pages","M3 5h18v14H3zM3 9h18"],["Local SEO","Google Business & map rankings","M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11zM12 12a2 2 0 100-4 2 2 0 000 4"],["AI Website Creation","Live site in days, not weeks","M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"],["Logo Design","Marks and brand kits","M12 2l3 7 7 .6-5.3 4.7L18 22l-6-3.8L6 22l1.3-7.7L2 9.600 9 9z"],["Social Media Posts","Scroll-stopping post designs","M4 4h16v12H8l-4 4z"]];
+const TOOLS=["WordPress","Elementor","WooCommerce","Yoast SEO","Google Business","Canva","Figma","ChatGPT","Illustrator"];
+const MARQ=["WordPress Design","Local SEO","AI Website Creation","Logo Design","Social Media Posts","Google Business Profile","Speed Optimization","Brand Identity","WooCommerce","Content Design"];
+const Ic=({d,s=22})=><svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={d}/></svg>;
+const Arrow=<span aria-hidden="true"> →</span>;
+
+function useIn(){const r=useRef(null);const[v,setV]=useState(false);useEffect(()=>{const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);o.disconnect()}},{threshold:.15});r.current&&o.observe(r.current);return()=>o.disconnect()},[]);return[r,v]}
+function Rv({children,className="",delay=0}){const[r,v]=useIn();return <div ref={r} style={{transitionDelay:delay+"ms"}} className={"rv "+(v?"in ":"")+className}>{children}</div>}
+function Count({to,suffix="+"}){const[r,v]=useIn();const[n,setN]=useState(0);useEffect(()=>{if(!v)return;let t0=null,id;const f=t=>{t0=t0||t;const p=Math.min((t-t0)/1500,1);setN(Math.round(to*(1-Math.pow(1-p,3))));if(p<1)id=requestAnimationFrame(f)};id=requestAnimationFrame(f);return()=>cancelAnimationFrame(id)},[v,to]);return <span ref={r}>{n.toLocaleString()}{suffix}</span>}
+function Tilt({children,className=""}){const r=useRef(null);
+const mv=e=>{const b=r.current.getBoundingClientRect();const x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;r.current.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`};
+const lv=()=>{r.current.style.transform=""};
+return <div ref={r} onMouseMove={mv} onMouseLeave={lv} className={"card "+className}>{children}</div>}
+const Btn=({children,onClick,ghost,href})=>{const c="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-105 "+(ghost?"border border-white/20 text-white hover:border-orange-500/60":"grad text-white shadow-lg shadow-orange-600/20");return href?<a href={href} className={c}>{children}</a>:<button onClick={onClick} className={c}>{children}</button>}
+function Cursor(){const d=useRef(null),o=useRef(null);const[big,setBig]=useState(false);
+useEffect(()=>{if(!matchMedia("(hover:hover) and (pointer:fine)").matches)return;let x=0,y=0,ox=0,oy=0,id;
+const m=e=>{x=e.clientX;y=e.clientY;d.current.style.transform=`translate(${x-4}px,${y-4}px)`;setBig(!!e.target.closest("a,button,input,textarea"))};
+const f=()=>{ox+=(x-ox)*.15;oy+=(y-oy)*.15;o.current.style.transform=`translate(${ox-18}px,${oy-18}px) scale(${o.current.dataset.b==="1"?1.8:1})`;id=requestAnimationFrame(f)};
+window.addEventListener("mousemove",m);id=requestAnimationFrame(f);return()=>{window.removeEventListener("mousemove",m);cancelAnimationFrame(id)}},[]);
+if(typeof matchMedia!=="undefined"&&!matchMedia("(hover:hover) and (pointer:fine)").matches)return null;
+return <><div ref={d} className="grad fixed left-0 top-0 z-[100] h-2 w-2 rounded-full pointer-events-none"/><div ref={o} data-b={big?1:0} className="fixed left-0 top-0 z-[100] h-9 w-9 rounded-full border border-orange-500/70 pointer-events-none"/></>}
+
+function Nav({open}){const[sc,setSc]=useState(false);const[dr,setDr]=useState(false);
+useEffect(()=>{const f=()=>setSc(scrollY>20);f();addEventListener("scroll",f);return()=>removeEventListener("scroll",f)},[]);
+const L=[["Home","#home"],["About","#about"],["Services","#services"],["Portfolio","#portfolio"],["Tools","#tools"],["Awards","#awards"]];
+const V=["AI Website Studio","Local SEO Lab","Brand & Logo Studio"];
+return <header className="fixed inset-x-0 top-0 z-50 transition" style={{paddingTop:"env(safe-area-inset-top,0px)",background:sc?"rgba(0,0,0,.9)":"transparent",backdropFilter:sc?"blur(14px)":"none"}}>
+<nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
+<a href="#home" className="logo text-2xl">Yawar<span className="grad inline-block h-2 w-2 rounded-full ml-0.5"/></a>
+<div className="hidden items-center gap-7 text-sm text-[#AAAAAA] lg:flex">
+{L.map(([t,h])=><a key={t} href={h} className="hover:text-white transition">{t}</a>)}
+<div className="group relative"><button className="hover:text-white">Ventures ▾</button>
+<div className="invisible absolute left-0 top-full pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"><div className="w-52 rounded-xl border border-white/10 bg-[#141414] p-2">{V.slice(0,2).map(v=><a key={v} href="#ventures" className="block rounded-lg px-3 py-2 hover:bg-[#1C1C1C] hover:text-white">{v}</a>)}</div></div></div>
+<a href="#contact" className="hover:text-white">Contact</a></div>
+<div className="flex items-center gap-3"><span className="hidden lg:block"><Btn onClick={open}>Let's Work{Arrow}</Btn></span>
+<button aria-label="Open menu" onClick={()=>setDr(true)} className="lg:hidden p-2"><Ic d="M3 6h18M3 12h18M3 18h18"/></button></div></nav>
+<div className="shimmer"/>
+{dr&&<div className="fixed inset-0 z-50 bg-black/60 lg:hidden" onClick={()=>setDr(false)}><aside onClick={e=>e.stopPropagation()} className="ml-auto flex h-full w-72 flex-col gap-4 bg-[#0D0D0D] p-6">
+<button aria-label="Close menu" onClick={()=>setDr(false)} className="self-end p-1"><Ic d="M6 6l12 12M18 6L6 18"/></button>
+{[...L,["Ventures","#ventures"],["Contact","#contact"]].map(([t,h])=><a key={t} href={h} onClick={()=>setDr(false)} className="text-lg text-[#AAAAAA]">{t}</a>)}
+<Btn onClick={()=>{setDr(false);open()}}>Let's Work{Arrow}</Btn></aside></div>}
+</header>}
+
+function Hero({open}){return <section id="home" className="relative overflow-hidden px-5 pt-32 pb-20">
+<div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full" style={{background:"radial-gradient(circle,rgba(255,107,53,.22),transparent 70%)"}}/>
+<div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full" style={{background:"radial-gradient(circle,rgba(204,31,90,.22),transparent 70%)"}}/>
+<div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+<div>
+<span className="inline-block rounded-full bg-[#1C1C1C] px-4 py-2 text-xs text-[#AAAAAA] border border-white/10">WordPress Designer · Local SEO · AI Websites · Branding</span>
+<h1 className="mt-6 text-5xl leading-[1.05] sm:text-6xl">Websites That Rank.<br/><span className="gtext">Brands That Get Remembered.</span></h1>
+<p className="mt-5 max-w-lg text-lg text-[#AAAAAA]">I'm {NAME}. I design WordPress and AI-built websites, rank local businesses on Google Maps, and create logos and social posts that make brands look sharp.</p>
+<div className="mt-8 flex flex-wrap gap-3"><Btn href="#portfolio">Explore My Work</Btn><Btn ghost onClick={open}>Let's Work</Btn></div>
+<div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">{[["Websites Built",60],["Logos Designed",150],["Local SEO Clients",40],["Years Active",4]].map(([l,n])=><div key={l}><div className="logo text-3xl gtext"><Count to={n}/></div><div className="text-xs text-[#AAAAAA]">{l}</div></div>)}</div></div>
+<div className="relative mx-auto w-full max-w-md">
+<div className="card relative aspect-[4/5] overflow-hidden" style={{background:"linear-gradient(160deg,#1C1C1C,#0D0D0D)"}}>
+<img src="./profile-photo.jpeg" alt="Muhammad Yawar portrait" className="h-full w-full object-cover object-center" />
+<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+</div>
+<div className="float card absolute -left-4 top-10 px-4 py-3 text-sm sm:-left-8"><b className="gtext logo text-xl">60+</b><div className="text-xs text-[#AAAAAA]">Websites Built</div></div>
+<div className="float card absolute -right-4 bottom-16 px-4 py-3 text-sm sm:-right-8" style={{animationDelay:"1s"}}><b className="gtext logo text-xl">150+</b><div className="text-xs text-[#AAAAAA]">Logos Designed</div></div>
+</div></div></section>}
+
+const Marquee=()=><div className="overflow-hidden border-y border-white/[.07] bg-[#0D0D0D] py-5" aria-hidden="true"><div className="marq">{[...MARQ,...MARQ].map((t,i)=><span key={i} className="flex items-center whitespace-nowrap text-[#AAAAAA]"><span className="mx-6">{t}</span><span className="grad h-1.5 w-1.5 rounded-full"/></span>)}</div></div>;
+
+const Sec=({id,alt,children})=><section id={id} className="px-5 py-24" style={{background:alt?"#0D0D0D":"#000"}}><div className="mx-auto max-w-7xl">{children}</div></section>;
+const Head=({k,t,sub})=><Rv className="mx-auto mb-14 max-w-2xl text-center"><div className="text-sm text-[#FF6B35]">{k}</div><h2 className="mt-2 text-4xl sm:text-5xl">{t}</h2>{sub&&<p className="mt-4 text-[#AAAAAA]">{sub}</p>}</Rv>;
+
+const Stats=()=><div className="px-5 py-14"><div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 lg:grid-cols-5">{[["Websites Delivered",60,"+"],["Logos Created",150,"+"],["Social Posts Designed",2500,"+"],["Local SEO Rankings Won",40,"+"],["Happy Clients",90,"+"]].map(([l,n,s])=><Tilt key={l} className="p-6 text-center"><div className="logo text-3xl gtext"><Count to={n} suffix={s}/></div><div className="mt-1 text-sm text-[#AAAAAA]">{l}</div></Tilt>)}</div></div>;
+
+const About=({open})=><Sec id="about"><div className="grid items-center gap-14 lg:grid-cols-2">
+<Rv className="relative"><div className="card aspect-square overflow-hidden" style={{background:"linear-gradient(135deg,#1C1C1C,#0D0D0D)"}}><img src="./profile-photo.jpeg" alt="Muhammad Yawar" className="h-full w-full object-cover object-center" /></div>
+<div className="float card absolute -bottom-5 -right-3 flex items-center gap-2 px-4 py-3 text-sm"><span className="grad rounded-lg p-2"><Ic s={18} d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></span>★ Top-Rated Freelancer</div></Rv>
+<Rv><div className="text-sm text-[#FF6B35]">Who I Am</div><h2 className="mt-2 text-4xl sm:text-5xl">From First Website to a Full Digital Studio</h2>
+<p className="mt-5 text-[#AAAAAA]">I'm {NAME}, a web and brand designer who helps local businesses get found online. I build WordPress sites that load fast, use AI to launch pages in days, and set up local SEO so customers in your area find you first.</p>
+<p className="mt-3 text-[#AAAAAA]">Every project ships with a clean logo, consistent social media posts, and a site you can edit yourself.</p>
+<div className="mt-6 flex flex-wrap gap-2">{["WordPress Designer","Local SEO Specialist","AI Website Builder","Logo Designer","Social Media Designer","Freelancer"].map(c=><span key={c} className="rounded-full border border-white/10 bg-[#1C1C1C] px-4 py-2 text-sm">{c}</span>)}</div>
+<div className="mt-8"><Btn onClick={open}>Full Story{Arrow}</Btn></div></Rv></div></Sec>;
+
+const Services=({open})=><Sec id="services" alt><Head k="Services" t="Skills That Generate Results"/>
+<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{WORK.map(([t,s,d],i)=><Rv key={t} delay={i*70}><Tilt className="h-full p-7"><div className="grad mb-5 inline-flex rounded-xl p-3"><Ic d={d}/></div><h3 className="text-xl">{t}</h3><p className="mt-2 text-[#AAAAAA]">{s}</p></Tilt></Rv>)}</div>
+<div className="mt-12 text-center"><Btn onClick={open}>See All Services & Pricing{Arrow}</Btn></div></Sec>;
+
+const Tools=()=><Sec id="tools"><Head k="Toolkit" t="Platforms I Work With"/>
+<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">{[...TOOLS,"+Many More"].map((t,i)=><Rv key={t} delay={i*40}>{i===9?<div className="grad flex h-24 items-center justify-center rounded-[20px] font-semibold">{t}</div>:<Tilt className="flex h-24 items-center justify-center font-semibold text-[#AAAAAA] hover:text-white">{t}</Tilt>}</Rv>)}</div>
+<div className="mt-12 text-center"><Btn ghost href="#portfolio">View All Projects{Arrow}</Btn></div></Sec>;
+
+const Ventures=()=><Sec id="ventures" alt><Head k="Ventures" t="Beyond Freelancing: Building a Studio"/>
+<div className="grid gap-6 lg:grid-cols-3" id="portfolio">{[["AI Website Studio","Launch-ready business websites built with AI and polished by hand."],["Local SEO Lab","Google Business Profile setup and map-pack ranking for local shops."],["Brand & Logo Studio","Logos, brand kits and social templates for new businesses."]].map(([t,d],i)=><Rv key={t} delay={i*80}><Tilt className="h-full p-8"><div className="logo gtext text-5xl">0{i+1}</div><h3 className="mt-4 text-2xl">{t}</h3><p className="mt-2 text-[#AAAAAA]">{d}</p></Tilt></Rv>)}</div></Sec>;
+
+const Awards=()=><Sec id="awards"><Head k="Recognition" t="Trusted by Clients"/>
+<div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">{[["2023","Add your first award or milestone here"],["2024","Add your second award or milestone here"]].map(([y,t])=><Rv key={y}><Tilt className="p-8 text-center"><div className="grad mx-auto mb-4 inline-flex rounded-2xl p-4"><Ic s={30} d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></div><div className="logo gtext text-3xl">{y}</div><p className="mt-2 text-[#AAAAAA]">{t}</p></Tilt></Rv>)}</div>
+<div className="mt-12 text-center"><Btn ghost href="#contact">Full Awards & Milestones{Arrow}</Btn></div></Sec>;
+
+const Reviews=()=><Sec id="reviews" alt><Head k="Reviews" t="Clients Agree"/>
+<div className="grid gap-6 lg:grid-cols-3">{[["Local Business Owner","Our site went live fast and we started getting calls from Google Maps within weeks."],["Ahmed K.","The logo and social posts gave my brand a look I'm proud of."],["Sara M.","Clear communication, quick edits, and a WordPress site I can manage myself."]].map(([n,q],i)=><Rv key={n} delay={i*80}><Tilt className="h-full p-7"><div className="text-[#FF6B35]" aria-label="5 stars">★★★★★</div><p className="mt-4 text-[#AAAAAA]">“{q}”</p><div className="mt-5 font-semibold">{n}</div><div className="text-xs text-[#505050]">Sample review, replace with real feedback</div></Tilt></Rv>)}</div></Sec>;
+
+const CTA=({open})=><section id="contact" className="px-5 py-24"><div className="relative mx-auto max-w-5xl overflow-hidden rounded-[32px] border border-orange-500/30 p-10 text-center sm:p-16" style={{background:"radial-gradient(circle at 50% 0%,rgba(255,107,53,.25),rgba(204,31,90,.1) 60%,#0D0D0D)",boxShadow:"0 0 80px rgba(232,41,74,.18)"}}>
+<h2 className="text-4xl sm:text-5xl">Let's Build Something Your Customers Find First</h2>
+<p className="mx-auto mt-4 max-w-xl text-[#AAAAAA]">Tell me about your business and I'll reply with a plan and a quote.</p>
+<div className="mt-8 flex flex-wrap justify-center gap-3"><Btn onClick={open}>Start a Conversation{Arrow}</Btn><Btn ghost href="#services">View Services & Pricing</Btn></div></div></section>;
+
+const Footer=()=><footer className="border-t border-white/[.07] bg-[#0D0D0D] px-5 pt-16 pb-8"><div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+<div><div className="logo text-2xl">Yawar<span className="grad inline-block h-2 w-2 rounded-full ml-0.5"/></div><p className="mt-3 text-sm text-[#AAAAAA]">Designing Websites. Ranking Businesses. Building Brands.</p><div className="mt-4 flex gap-2">{["Fb","Ig","In","X"].map(s=><a key={s} href="#contact" aria-label={s} className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1C1C1C] text-xs hover:bg-[#2a2a2a]">{s}</a>)}</div></div>
+{[["Navigation",["Home","About","Services","Contact"]],["My Work",["WordPress Design","Local SEO","AI Websites","Logos & Social Posts"]],["Platforms",["WordPress Sites: 60+","Logos: 150+","Social Posts: 2,500+","Local SEO Wins: 40+"]]].map(([h,l])=><div key={h}><h3 className="text-base">{h}</h3><ul className="mt-3 space-y-2 text-sm text-[#AAAAAA]">{l.map(x=><li key={x}>{x}</li>)}</ul></div>)}</div>
+<div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-2 border-t border-white/[.07] pt-6 text-xs text-[#505050] sm:flex-row"><span>© 2026 {NAME}. All rights reserved.</span><span>AI Website Studio · Local SEO Lab · Brand & Logo Studio</span></div></footer>;
+
+function Modal({close}){const[sent,setSent]=useState(false);
+useEffect(()=>{const f=e=>e.key==="Escape"&&close();addEventListener("keydown",f);return()=>removeEventListener("keydown",f)},[]);
+const inp="mt-1 w-full rounded-xl border border-white/10 bg-[#1C1C1C] px-4 py-3 text-sm outline-none focus:border-orange-500/60";
+return <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70 p-4" onClick={close}><div role="dialog" aria-modal="true" onClick={e=>e.stopPropagation()} className="card w-full max-w-md p-7">
+{sent?<div className="text-center"><h3 className="text-2xl">Message ready ✓</h3><p className="mt-2 text-[#AAAAAA]">This demo form doesn't send yet. Connect it to your email or WhatsApp link.</p><div className="mt-6"><Btn onClick={close}>Close</Btn></div></div>:
+<div><div className="flex justify-between"><h3 className="text-2xl">Quick inquiry</h3><button aria-label="Close" onClick={close}><Ic d="M6 6l12 12M18 6L6 18"/></button></div>
+<div className="mt-5 space-y-4"><label className="block text-sm">Name<input className={inp}/></label><label className="block text-sm">Service<select className={inp}>{WORK.map(w=><option key={w[0]}>{w[0]}</option>)}</select></label><label className="block text-sm">Project details<textarea rows="3" className={inp}/></label><Btn onClick={()=>setSent(true)}>Send inquiry{Arrow}</Btn></div></div>}</div></div>}
+
+function App(){const[m,setM]=useState(false);const[top,setTop]=useState(false);
+useEffect(()=>{const f=()=>setTop(scrollY>600);addEventListener("scroll",f);return()=>removeEventListener("scroll",f)},[]);
+const open=()=>setM(true);
+return <><Cursor/><Nav open={open}/><main><Hero open={open}/><Marquee/><Stats/><About open={open}/><Services open={open}/><Tools/><Ventures/><Awards/><Reviews/><CTA open={open}/></main><Footer/>
+<button onClick={open} className="fixed bottom-5 left-5 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-[#141414] px-4 py-2 text-sm shadow-xl" style={{marginBottom:"env(safe-area-inset-bottom,0px)"}}><span className="relative flex h-2.5 w-2.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-70"/><span className="relative h-2.5 w-2.5 rounded-full bg-green-500"/></span>Available for Work</button>
+{top&&<button aria-label="Scroll to top" onClick={()=>scrollTo({top:0,behavior:"smooth"})} className="grad fixed bottom-5 right-5 z-40 rounded-full p-3" style={{marginBottom:"env(safe-area-inset-bottom,0px)"}}><Ic d="M12 19V5M5 12l7-7 7 7"/></button>}
+{m&&<Modal close={()=>setM(false)}/>}</>}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
